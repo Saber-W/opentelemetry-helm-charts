@@ -33,8 +33,7 @@ jobs:
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
           fi
-          operator-changed=$(ct list-changed --target-branch main --chart-dirs charts/opentelemetry-operator)
-          if [[ -n "$operator-changed" ]]; then
+          if [[ "$changed" == *"opentelemetry-operator"* ]]; then
             echo "::set-output name=operator-changed::true"
           fi
 
