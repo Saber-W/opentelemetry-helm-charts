@@ -56,13 +56,13 @@ jobs:
 
       - name: Install KUTTL
         run: |
-          curl -fsSLO "https://github.com/kudobuilder/kuttl/releases/download/v0.11.0/kuttl_0.11.0_linux_arm64.tar.gz"
-          tar zxvf kuttl_0.11.0_linux_arm64.tar.gz
-          cp kubectl-kuttl $GITHUB_WORKSPACE/bin
-          echo "::add-path::$GITHUB_WORKSPACE/bin"
-          ls $GITHUB_WORKSPACE/bin -la
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          set -x; cd "$(mktemp -d)" &&
+          OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+          ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+          curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
+          tar zxvf krew.tar.gz &&
+          KREW=./krew-"${OS}_${ARCH}" &&
+          "$KREW" install krew
 
       - name: Run KUTTL smoke tests
         run: |
