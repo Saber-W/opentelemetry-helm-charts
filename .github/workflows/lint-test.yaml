@@ -19,6 +19,11 @@ jobs:
         with:
           version: v3.4.1
 
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
       - uses: actions/setup-python@v2
         with:
           python-version: 3.7
@@ -67,10 +72,10 @@ jobs:
           kubectl krew install kuttl
           helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
           helm repo update
+          sleep 5s
           helm install my-opentelemetry-operator open-telemetry/opentelemetry-operator
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
           cd ./opentelemetry-operator
-          go install sigs.k8s.io/kustomize/kustomize/v3@v3.5.4
           make prepare-e2e e2e KUBE_VERSION=$KUBE_VERSION
 
       - name: Run KUTTL smoke tests
