@@ -65,6 +65,7 @@ jobs:
           "$KREW" install krew
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           kubectl krew install kuttl
+          kubectl kuttl version
 
       - name: Run KUTTL smoke tests
         run: |
