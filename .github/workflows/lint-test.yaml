@@ -56,9 +56,6 @@ jobs:
           kubectl wait --timeout=5m --for=condition=available deployment cert-manager-webhook -n cert-manager
         if: steps.list-changed.outputs.operator-changed == 'true'
 
-      - name: Run chart-testing (install)
-        run: ct install --target-branch main
-
       - name: Install KUTTL
         run: |
           set -x; cd "$(mktemp -d)" &&
@@ -76,7 +73,7 @@ jobs:
           helm install my-opentelemetry-operator open-telemetry/opentelemetry-operator
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
           cd ./opentelemetry-operator
-          make prepare-e2e e2e KUBE_VERSION=$KUBE_VERSION
+          kubectl kuttl test ./tests/e2e --config ./.github/kuttl-test.yaml
 
       - name: Run KUTTL smoke tests
         run: |
