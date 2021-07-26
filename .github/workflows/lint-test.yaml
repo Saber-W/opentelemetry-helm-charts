@@ -56,8 +56,9 @@ jobs:
 
       - name: Install KUTTL
         run: |
-          wget https://github.com/kudobuilder/kuttl/releases/download/v0.11.0/kubectl-kuttl_0.11.0_linux_arm64
-          ./kubectl-kuttl_0.11.0_linux_arm64
+          git clone https://github.com/kudobuilder/kuttl.git
+          cd ./kuttl
+          make cli-install
 
       - name: Run KUTTL smoke tests
         run: |
