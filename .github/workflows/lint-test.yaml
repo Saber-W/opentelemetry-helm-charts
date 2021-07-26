@@ -69,6 +69,7 @@ jobs:
 
       - name: Run KUTTL smoke tests
         run: |
+          kubectl kuttl version
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
           cd ./opentelemetry-operator
           kubectl kuttl test ./tests/e2e
