@@ -56,9 +56,12 @@ jobs:
 
       - name: Install KUTTL
         run: |
-          git clone https://github.com/kudobuilder/kuttl.git
-          cd ./kuttl
-          make cli-install
+          OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+          ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+          curl -fsSLO "https://github.com/kudobuilder/kuttl/releases/latest/download/kuttl.tar.gz" &&
+          tar zxvf kuttl.tar.gz &&
+          KUTTL=./kuttl-"${OS}_${ARCH}" &&
+          "$KUTTL" install kuttl
 
       - name: Run KUTTL smoke tests
         run: |
