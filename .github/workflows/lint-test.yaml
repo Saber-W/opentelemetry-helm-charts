@@ -73,7 +73,7 @@ jobs:
           helm install my-opentelemetry-operator open-telemetry/opentelemetry-operator
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
           cd ./opentelemetry-operator
-          kubectl kuttl test ./tests/e2e --config ./.github/kuttl-test.yaml
+          kubectl kuttl test ./tests/e2e --config ./charts/opentelemetry-operator/release/kuttl-test.yaml
 
       - name: Run KUTTL smoke tests
         run: |
