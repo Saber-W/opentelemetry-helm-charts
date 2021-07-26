@@ -56,12 +56,13 @@ jobs:
 
       - name: Install KUTTL
         run: |
-          $ACTIONS_ALLOW_UNSECURE_COMMANDS=true
           curl -fsSLO "https://github.com/kudobuilder/kuttl/releases/download/v0.11.0/kuttl_0.11.0_linux_arm64.tar.gz"
           tar zxvf kuttl_0.11.0_linux_arm64.tar.gz
           cp kubectl-kuttl $GITHUB_WORKSPACE/bin
           echo "::add-path::$GITHUB_WORKSPACE/bin"
           ls $GITHUB_WORKSPACE/bin -la
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
       - name: Run KUTTL smoke tests
         run: |
