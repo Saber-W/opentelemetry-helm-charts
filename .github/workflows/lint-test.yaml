@@ -65,7 +65,9 @@ jobs:
           "$KREW" install krew
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           kubectl krew install kuttl
-          kubectl kuttl version
+          git clone https://github.com/open-telemetry/opentelemetry-operator.git
+          cd ./opentelemetry-operator
+          kubectl kuttl test ./tests/e2e
 
       - name: Run KUTTL smoke tests
         run: |
