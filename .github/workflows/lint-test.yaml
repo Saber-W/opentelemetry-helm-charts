@@ -29,7 +29,6 @@ jobs:
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          ls . -la
           changed=$(ct list-changed --target-branch main)
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
@@ -57,7 +56,6 @@ jobs:
 
       - name: Install KUTTL
         run: |
-          ls $GITHUB_WORKSPACE -la
           set -x; cd "$(mktemp -d)" &&
           OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
           ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
@@ -67,13 +65,12 @@ jobs:
           "$KREW" install krew
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           kubectl krew install kuttl
-          kubectl get ns -A
           helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
           helm repo update
           helm install my-opentelemetry-operator open-telemetry/opentelemetry-operator
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
           cd ./opentelemetry-operator
-          make e2e
+          kubectl kuttl test ./test/e2e --crd-dir ./charts/opentelemetry-operator/crds
 
       - name: Run KUTTL smoke tests
         run: |
