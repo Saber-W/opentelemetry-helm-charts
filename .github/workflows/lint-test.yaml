@@ -58,15 +58,9 @@ jobs:
 
       - name: Install KUTTL
         run: |
-          set -x; cd "$(mktemp -d)" &&
-          OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
-          ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
-          curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
-          tar zxvf krew.tar.gz &&
-          KREW=./krew-"${OS}_${ARCH}" &&
-          "$KREW" install krew
-          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-          kubectl krew install kuttl
+          sudo curl -Lo /usr/local/bin/kubectl-kuttl https://github.com/kudobuilder/kuttl/releases/download/v0.11.0/kubectl-kuttl_0.11.0_linux_x86_64
+          sudo chmod +x /usr/local/bin/kubectl-kuttl
+          export PATH=$PATH:/usr/local/bin
           helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
           helm repo update
           sleep 5s
