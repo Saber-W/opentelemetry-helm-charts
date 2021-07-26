@@ -56,9 +56,6 @@ jobs:
 
       - name: Install KUTTL
         run: |
-          helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-          helm repo update
-          helm install my-opentelemetry-operator open-telemetry/opentelemetry-operator
           set -x; cd "$(mktemp -d)" &&
           OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
           ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
@@ -68,7 +65,10 @@ jobs:
           "$KREW" install krew
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
           kubectl krew install kuttl
-          kubectl get all -A
+          kubectl get ns -A
+          helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+          helm repo update
+          helm install my-opentelemetry-operator open-telemetry/opentelemetry-operator
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
           cd ./opentelemetry-operator
           kubectl kuttl test ./tests/e2e
