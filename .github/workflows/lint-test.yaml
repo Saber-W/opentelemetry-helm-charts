@@ -54,8 +54,11 @@ jobs:
       - name: Run chart-testing (install)
         run: ct install --target-branch main
 
+      - name: Install KUTTL
+        run: kubectl krew install kuttl
+
       - name: Run KUTTL smoke tests
         run: |
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
-          cd opentelemetry-operator
+          cd ./opentelemetry-operator
           kubectl kuttl test ./tests/e2e
