@@ -70,6 +70,7 @@ jobs:
           helm install my-opentelemetry-operator open-telemetry/opentelemetry-operator
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
           cd ./opentelemetry-operator
+          go install sigs.k8s.io/kustomize/kustomize/v3@v3.5.4
           make prepare-e2e e2e KUBE_VERSION=$KUBE_VERSION
 
       - name: Run KUTTL smoke tests
