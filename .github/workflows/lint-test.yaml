@@ -72,7 +72,7 @@ jobs:
           sleep 5s
           helm install my-opentelemetry-operator open-telemetry/opentelemetry-operator
           git clone https://github.com/open-telemetry/opentelemetry-operator.git
-          kubectl kuttl test ./opentelemetry-operator/tests/e2e --config ./charts/opentelemetry-operator/release/kuttl-test.yaml
+          kubectl kuttl test ./opentelemetry-operator/tests/e2e --config $GITHUB_WORKSPACE/charts/opentelemetry-operator/release/kuttl-test.yaml
 
       - name: Run KUTTL smoke tests
         run: |
