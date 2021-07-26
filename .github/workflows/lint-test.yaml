@@ -58,8 +58,8 @@ jobs:
         run: |
           curl -fsSLO "https://github.com/kudobuilder/kuttl/releases/download/v0.11.0/kuttl_0.11.0_linux_arm64.tar.gz"
           tar zxvf kuttl_0.11.0_linux_arm64.tar.gz
-          ls -al
-          ./kubectl-kuttl
+          cp kubectl-kuttl /bin
+          ls /bin -la
 
       - name: Run KUTTL smoke tests
         run: |
