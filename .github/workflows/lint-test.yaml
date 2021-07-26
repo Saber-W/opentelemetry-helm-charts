@@ -63,6 +63,7 @@ jobs:
           tar zxvf krew.tar.gz &&
           KREW=./krew-"${OS}_${ARCH}" &&
           "$KREW" install krew
+          kubectl krew install kuttl
 
       - name: Run KUTTL smoke tests
         run: |
