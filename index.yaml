@@ -3,9 +3,9 @@ entries:
   opentelemetry-collector:
   - apiVersion: v2
     appVersion: 0.22.0
-    created: "2021-07-26T16:57:33.442988491Z"
+    created: "2021-09-01T05:56:02.333451322Z"
     description: OpenTelemetry Collector Helm chart for Kubernetes
-    digest: 857393755ded1ab546657f36b9822e2b3df102829b041d9a6277dc98f7af4d37
+    digest: e62e0c682d5cbd77ba839f6ef09686c4a671e42d26d18facf6feeadab65d0228
     home: https://opentelemetry.io/
     icon: https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png
     maintainers:
@@ -19,14 +19,14 @@ entries:
     - https://github.com/open-telemetry/opentelemetry-collector-contrib
     type: application
     urls:
-    - https://github.com/Saber-W/opentelemetry-helm-charts/releases/download/opentelemetry-collector-0.5.9/opentelemetry-collector-0.5.9.tgz
-    version: 0.5.9
+    - https://github.com/Saber-W/opentelemetry-helm-charts/releases/download/opentelemetry-collector-0.5.10/opentelemetry-collector-0.5.10.tgz
+    version: 0.5.10
   opentelemetry-operator:
   - apiVersion: v2
-    appVersion: 0.29.0
-    created: "2021-07-26T16:57:33.577066263Z"
+    appVersion: 0.33.0
+    created: "2021-09-01T05:56:02.533219551Z"
     description: OpenTelemetry Operator Helm chart for Kubernetes
-    digest: 5fa3e6d67f8e48e84b86e17824a6fe0114416f175cf643005b984759d48945de
+    digest: 319dcaeab9f7e07f878c7d8dca57102b8d8d066bb2a773f9750344e31205afb5
     home: https://opentelemetry.io/
     icon: https://raw.githubusercontent.com/cncf/artwork/a718fa97fffec1b9fd14147682e9e3ac0c8817cb/projects/opentelemetry/icon/color/opentelemetry-icon-color.png
     maintainers:
@@ -42,6 +42,6 @@ entries:
     - https://github.com/open-telemetry/opentelemetry-operator
     type: application
     urls:
-    - https://github.com/Saber-W/opentelemetry-helm-charts/releases/download/opentelemetry-operator-0.1.0/opentelemetry-operator-0.1.0.tgz
-    version: 0.1.0
-generated: "2021-07-26T16:57:33.239411752Z"
+    - https://github.com/Saber-W/opentelemetry-helm-charts/releases/download/opentelemetry-operator-0.3.0/opentelemetry-operator-0.3.0.tgz
+    version: 0.3.0
+generated: "2021-09-01T05:56:02.035242165Z"
